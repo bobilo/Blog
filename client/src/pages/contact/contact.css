@@ -1,0 +1,54 @@
+.contact {
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(124, 113, 113, 0.5)
+    ),
+    url("https://previews.123rf.com/images/o0matze0o/o0matze0o1507/o0matze0o150700004/42067274-website-and-internet-contact-us-page-concept-with-icons-on-a-keyboard.jpg");
+    background-size: cover;
+}
+
+.contactTitle {
+    font-size: 50px;
+}
+
+.contactForm {
+    width: 500px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactForm > label {
+    margin: 10px 0;
+}
+
+.contactForm > input {
+    padding: 10px;
+    background-color: white;
+    border: none;
+}
+
+.contactForm > input:focus {
+    outline: none;
+}
+
+.contactForm > textarea:focus {
+    outline: none;
+}
+
+.contactButton {
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: teal;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    align-self: center;
+}
