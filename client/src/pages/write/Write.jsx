@@ -9,6 +9,7 @@ export default function Write() {
     const [file, setFile] = useState(null);
     const { user } = useContext(Context);
     const [categories, setCategories] = useState([]);
+    const [postCats, setPostCats] = useState([]);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -22,8 +23,9 @@ export default function Write() {
         e.preventDefault();
         const newPost = {
             username: user.username,
-            title,
-            desc,
+            title: title,
+            desc: desc,
+            categories: postCats,
         };
         if (file) {
             const data = new FormData();
@@ -42,6 +44,7 @@ export default function Write() {
         try {
             const res = await axios.post("/posts", newPost);
             window.location.replace("/post/" + res.data._id);
+            console.log("post cats", postCats);
 
         } catch(err) {
             console.log(err);
@@ -77,7 +80,7 @@ export default function Write() {
                     />
                 </div>
                 <div className="writeFormGroup">
-                    <select name="categoriess" className="catInput">
+                    <select name="categoriess" className="catInput" onChange={(e) => setPostCats(e.target.value)}>
                         <option>Select category...</option>
                         { categories.map((cat) => (
                             <option>{cat.name}</option>
