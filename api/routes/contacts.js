@@ -13,5 +13,27 @@ router.post("/", async(req, res) => {
     }
  });
 
- module.exports = router;
+ // GET ALL CONTACTS
+ router.get("/", async(req, res) => {
+      try {
+           const contacts = await Contact.find();
+           res.status(200).json(contacts);
+
+      } catch(err) {
+           res.status(500).json(err);
+      }
+ })
  
+//DELETE
+router.delete("/:id", async(req, res) => {
+     try {
+          const contact = await Contact.findById(req.params.id);
+          contact.delete();
+          res.status(200).json("Contact has been deleted...");
+
+     } catch(err) {
+          res.status(500).json(err);
+     }
+})
+
+module.exports = router;
