@@ -25,37 +25,37 @@ import {
 function App() {
   const { user } = useContext(Context)
   return (
-    <div className="App">
       <Router>
-        <TopBar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/register">
-            {user ? <Home /> : <Register />}
-          </Route>
-          <Route path="/login">
-          {user ? <Home /> : <Login />}
-          </Route>
-          <Route path="/write">
-          {user ? <Write /> : <Login />}
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/settings">
-          {user ? <Settings /> : <Login />}
-          </Route>
-          <Route path="/post/:postId">
-            <Single />
-          </Route>
-        </Switch>
+        <div className="App">
+          <TopBar />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/register">
+              {user ? <Home /> : <Register />}
+            </Route>
+            <Route path="/login">
+            {user ? <Home /> : <Login />}
+            </Route>
+            <Route path="/write">
+            {user ? <Write /> : <Login />}
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+            <Route path="/settings">
+            {user ? <Settings /> : <Login />}
+            </Route>
+            <Route path="/post/:postId">
+              <Single />
+            </Route>
+          </Switch>
+        </div>
       </Router>
-    </div>
   );
 }
 

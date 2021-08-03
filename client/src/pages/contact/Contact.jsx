@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios';
+import emailjs, { send } from 'emailjs-com';
+import { init } from 'emailjs-com';
+
 import './contact.css'
 
 export default function Contact() {
@@ -9,43 +12,80 @@ export default function Contact() {
     const [message, setMsg] = useState("");
     const [success, setSuccess] = useState(false);
 
-    const handleSubmit = async (e) => {
+    const [toSend, setToSend] = useState({
+        from_name: '',
+        to_name: '',
+        message: '',
+        reply_to: '',
+    });
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setSuccess(false);
+
+    //     const newContact = {
+    //         name,
+    //         email,
+    //         phone,
+    //         message
+    //     };
+
+    //     try {
+    //         const res =  await axios.post("/contacts", newContact);
+    //         setSuccess(true);
+    //         const form = document.getElementById("form");
+    //         form.reset();
+
+    //     } catch(err) {
+    //         console.log(err);
+    //     }
+    // }
+
+    const sendEmail = (e) => {
         e.preventDefault();
-        setSuccess(false);
+        init("user_9qFXHsbzaygEG8pIAQg0g");
 
-        const newContact = {
-            name,
-            email,
-            phone,
-            message
-        };
+        send(
+            'service_suu15ik',
+            'template_86sqi3d',
+            toSend,
+            'user_9qFXHsbzaygEG8pIAQg0g'
+        ).then((res) => {
+            console.log('SUCCESS!', res.status, res.text);
+        })
+        .catch((err) => {
+           console.log('FAILED...', err); 
+        });
 
-        try {
-            const res =  await axios.post("/contacts", newContact);
-            setSuccess(true);
-            const form = document.getElementById("form");
-            form.reset();
-
-        } catch(err) {
-            console.log(err);
-        }
+        // emailjs.sendForm('service_suu15ik', 'template_86sqi3d', e.target, 'user_9qFXHsbzaygEG8pIAQg0g')
+        //     .then((result) => {
+        //         console.log(result.text);
+        //     }, (error) => {
+        //         console.log(error.text);
+        //     });
     }
+
+    const handleChange = (e) => {
+        setToSend({...toSend, [e.target.name]: e.target.value });
+    };
 
     return (
         <div className="contact">
             <span className="contactTitle">Contact US</span>
-            <form className="contactForm" onSubmit={handleSubmit} id="form">
+            <form className="contactForm" onSubmit={sendEmail} id="form">
                 <label>Full Name</label>
                 <input 
                     type="text" 
                     placeholder="Enter your full name..."
-                    onChange={e => setName(e.target.value)}
+                    name="from_name"
+                    onChange={handleChange}
                 />
                 <label>Email</label>
                 <input 
                     type="email" 
                     placeholder="Enter your email..."
-                    onChange={e => setEmail(e.target.value)}
+                    name="reply_to"
+                    onChange={handleChange}
                 />
                 <label>Phone No.</label>
                 <input 
@@ -58,7 +98,7 @@ export default function Contact() {
                     name="message" 
                     rows="10" cols="30"
                     placeholder="Enter a message..."
-                    onChange={e => setMsg(e.target.value)} 
+                    onChange={handleChange} 
                  />
                 <button className="contactButton" type="submit">Submit</button>
                 { success &&
