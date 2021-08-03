@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import './App.css';
 
 import TopBar from "./components/topbar/TopBar";
 import Home from "./pages/home/Home"
