@@ -15,12 +15,12 @@ export default function Login() {
         dispatch({type:"LOGIN_START"});
 
         try {
-            const res = await axios.post("/auth/login", {
+            const res = await axios.post("https://node-blog-backend-bonface.herokuapp.com/api/auth/login", {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             });
             dispatch({type:"LOGIN_SUCCESS", payload:res.data});
-            // res.data && window.location.replace("/");
+            res.data && window.location.replace("/");
 
         } catch(err) {
             dispatch({type:"LOGIN_FAILURE"});
@@ -45,9 +45,9 @@ export default function Login() {
                 />
                 <button className="loginButton" type="submit" disabled={isFetching}>Login</button>
             </form>
-            <button className="loginRegisterBtn">
+            {/* <button className="loginRegisterBtn">
                 <Link className="link" to="/register">Register</Link>
-            </button>
+            </button> */}
         </div>
     )
 }

@@ -14,7 +14,7 @@ export default function Register() {
         setError(false);
 
         try{
-            const res = await axios.post("/auth/register", {
+            const res = await axios.post("https://node-blog-backend-bonface.herokuapp.com/api/auth/register", {
                 username,
                 email,
                 password,
@@ -51,9 +51,9 @@ export default function Register() {
                 />
                 <button className="registerButton" type="submit">Register</button>
             </form>
-            <button className="registerLoginBtn">
+            {/* <button className="registerLoginBtn">
                 <Link className="link" to="/login">Login</Link>
-            </button>
+            </button> */}
             {error && <span className="errorText">Something went wrong!</span>}
         </div>
     )

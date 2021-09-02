@@ -13,7 +13,7 @@ export default function Write() {
 
     useEffect(() => {
         const fetchCategories = async () => {
-            const res = await axios.get("/categories");
+            const res = await axios.get("https://node-blog-backend-bonface.herokuapp.com/api/categories");
             setCategories(res.data);
         }
         fetchCategories();
@@ -35,14 +35,14 @@ export default function Write() {
             newPost.photo = filename;
             
             try {
-                await axios.post("/upload", data);
+                await axios.post("https://node-blog-backend-bonface.herokuapp.com/api/upload", data);
             } catch(err) {
                 console.log(err);
             }
         }
 
         try {
-            const res = await axios.post("/posts", newPost);
+            const res = await axios.post("https://node-blog-backend-bonface.herokuapp.com/api/posts", newPost);
             window.location.replace("/post/" + res.data._id);
             console.log("post cats", postCats);
 

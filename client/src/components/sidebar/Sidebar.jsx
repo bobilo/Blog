@@ -8,7 +8,7 @@ export default function Sidebar() {
 
     useEffect(() => {
         const fetchCategories = async () => {
-            const res = await axios.get("/categories");
+            const res = await axios.get("https://node-blog-backend-bonface.herokuapp.com/api/categories");
             setCategories(res.data);
         }
         fetchCategories();

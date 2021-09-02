@@ -11,7 +11,7 @@ export default function Settings() {
     const [password, setPassword] = useState("");
     const [file, setFile] = useState(null);
     const [success, setSuccess] = useState(false);
-    const PF = "http://localhost:5000/images/";
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,14 +31,14 @@ export default function Settings() {
             updatedUser.profilePic = filename;
             
             try {
-                await axios.post("/upload", data);
+                await axios.post("https://node-blog-backend-bonface.herokuapp.com/api/upload", data);
             } catch(err) {
                 console.log(err);
             }
         }
 
         try {
-            const res = await axios.put("/users/" + user._id, updatedUser);
+            const res = await axios.put("https://node-blog-backend-bonface.herokuapp.com/api/users/" + user._id, updatedUser);
             setSuccess(true);
             dispatch({type: "UPDATE_SUCCESS", payload: res.data});
             window.location.reload();
@@ -51,7 +51,7 @@ export default function Settings() {
 
     const handleDeleteUser = async () => {
         try {
-            await axios.delete("/users/" + user._id, {
+            await axios.delete("https://node-blog-backend-bonface.herokuapp.com/api/users/" + user._id, {
                 data: {userId: user._id}
             });
             dispatch({ type: "LOGOUT" });

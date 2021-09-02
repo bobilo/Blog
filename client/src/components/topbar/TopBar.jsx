@@ -7,7 +7,7 @@ import { Context } from '../../context/Context';
 export default function TopBar() {
 
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -32,9 +32,12 @@ export default function TopBar() {
                   <li className="topListItem">
                     <Link className="link" to="/contact">CONTACT</Link>
                   </li>
-                  <li className="topListItem">
-                    <Link className="link" to="/write">WRITE</Link>
-                  </li>
+                  {
+                    user && 
+                    <li className="topListItem">
+                      <Link className="link" to="/write">WRITE</Link>
+                    </li>
+                  }
                   <li className="topListItem" onClick={handleLogout}>
                     {user && "LOGOUT"}
                   </li> 
