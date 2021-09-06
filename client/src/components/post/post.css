@@ -1,6 +1,6 @@
 .post {
-    width: 385px;
-    margin: 0px 25px 40px 25px;
+    width: 350px;
+    margin: 0px 22px 40px 20px;
 }
 
 .postImg {
@@ -8,6 +8,7 @@
     height: 280px;
     object-fit: cover;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .postInfo {

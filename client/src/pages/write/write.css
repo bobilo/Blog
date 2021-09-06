@@ -5,9 +5,9 @@
 .writeImg {
     margin-left: 150px;
     width: 70vw;
-    height: 250px;
+    height: 500px;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: fill;
  }
 
 .writeForm {
@@ -63,8 +63,8 @@
 
 .writeSubmit {
    position: absolute;
-   top: 20px;
-   right: 50px;
+   top: 30px;
+   right: 200px;
    color: white;
    background-color: teal;
    border: none;
