@@ -66,8 +66,8 @@ export default function Settings() {
         <div className="settings">
             <div className="settingsWrapper">
                 <div className="settingsTitle">
-                    <span className="settingsUpdateTitle">Update Your Accoutnt</span>
-                    <span className="settingsDeleteTitle" onClick={handleDeleteUser}>Delete Accoutnt</span>
+                    <span className="settingsUpdateTitle">Update Your Account</span>
+                    <span className="settingsDeleteTitle" onClick={handleDeleteUser}>Delete Account</span>
                 </div>
                 <form className="settingsForm" onSubmit={handleSubmit}>
                     <label>Profile Picture</label>
