@@ -1,14 +1,14 @@
 import axios from 'axios'
 import './settings.css'
 import Sidebar from '../../components/sidebar/Sidebar'
-import { useContext, useState } from 'react'
+import { useContext, useState, useRef } from 'react'
 import { Context } from '../../context/Context'
 
 export default function Settings() {
     const { user, dispatch } = useContext(Context);
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const username = useRef();
+    const email = useRef();
+    // const [password, setPassword] = useState("");
     const [file, setFile] = useState(null);
     const [success, setSuccess] = useState(false);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -19,9 +19,8 @@ export default function Settings() {
         setSuccess(false);
         const updatedUser = {
             userId: user._id,
-            username,
-            email,
-            password,
+            username: username.current.value,
+            email: email.current.value,
         };
         if (file) {
             const data = new FormData();
@@ -87,11 +86,11 @@ export default function Settings() {
                         />
                     </div>
                     <label>Username</label>
-                    <input type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)}/>
+                    <input type="text" placeholder={user.username} defaultValue={user.username} ref={username}/>
                     <label>Email</label>
-                    <input type="email" placeholder={user.email} onChange={(e) => setEmail(e.target.value)}/>
-                    <label>Password</label>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="email" placeholder={user.email} defaultValue={user.email} ref={email}/>
+                    {/* <label>Password</label> */}
+                    {/* <input type="password" defaultValue={} onChange={(e) => setPassword(e.target.value)}/> */}
                     <button className="settingsButton" type="submit">
                         Update
                     </button>
